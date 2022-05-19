@@ -20,7 +20,6 @@ public class DateTimeInformation {
 
     @Autowired
     public DateTimeInformation() {
-        var now = new Date();
         var dateFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
         this.date = LocalDate.now().format(dateFormatter);
         this.millisecondsSinceEpoch = System.currentTimeMillis();
@@ -28,6 +27,5 @@ public class DateTimeInformation {
         this.time = LocalTime.now().format(timeFormatter);
         //        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 //        System.out.println(formatter.format(now));
-
     }
 }
