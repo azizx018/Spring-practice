@@ -1,15 +1,12 @@
 package net.yorksolutions.apiexercise;
 
 
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.net.UnknownHostException;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
-import java.util.Map;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -18,8 +15,8 @@ public class InfoController {
 
 
     @GetMapping("/ip")
-    public IpInformation ip() throws UnknownHostException {
-        return new IpInformation();
+    public IpInformation ip(HttpServletRequest request) throws UnknownHostException {
+        return new IpInformation(request.getRemoteAddr());
 
     }
 
@@ -41,8 +38,8 @@ public class InfoController {
     }
 
     @GetMapping("/json/validate")
-    public JsonInformation jsonValidate(@RequestParam String json) {
-        return new JsonInformation(json);
+    public JSONValidator jsonValidate(@RequestParam String json){
+        return new JSONValidator(json);
 
     }
 }

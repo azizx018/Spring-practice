@@ -11,6 +11,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import javax.servlet.http.HttpServletRequest;
 import java.net.UnknownHostException;
 import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
@@ -33,13 +34,18 @@ public class InfoControllerTest {
     @Mock
     HttpHeaders headers;
 
+    @Mock
+    HttpServletRequest request;
+
 
 
 
     @Test
     void itShouldReturnAnIpAddress() throws UnknownHostException {
-        var ipInfo = new IpInformation();
-        Assertions.assertEquals(ipInfo, controller.ip());
+        final String ip = "1.2.3.4";
+        final IpInformation expectedIP = new IpInformation(ip);
+        when(request.getRemoteAddr()).thenReturn(ip);
+        Assertions.assertEquals(expectedIP, controller.ip(request));
 
     }
     @Test
@@ -71,6 +77,18 @@ public class InfoControllerTest {
         Md5Information result = controller.md5(userInput);
         Assertions.assertEquals(hashHelloWorld, result.md5);
         Assertions.assertEquals(userInput, result.original);
+    }
+    @Test
+    void itShouldValidateAsTrueWithValidJSON() {
+        final String passedJSON = "{}";
+        JSONValidator result = controller.jsonValidate(passedJSON);
+        Assertions.assertEquals(true, result.validate);
+    }
+    @Test
+    void itShouldShowValidateOfFalseWithInvalidJSON() {
+        final String invalidJSON = "hi";
+        JSONValidator result = controller.jsonValidate(invalidJSON);
+        Assertions.assertEquals(false, result.validate);
     }
 
 }

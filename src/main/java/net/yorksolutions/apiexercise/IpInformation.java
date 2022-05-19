@@ -1,6 +1,7 @@
 package net.yorksolutions.apiexercise;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.Inet4Address;
@@ -9,7 +10,12 @@ import java.net.UnknownHostException;
 import java.util.Objects;
 
 public class IpInformation {
+    @JsonProperty
     public String ip;
+
+    IpInformation(String ip) {
+        this.ip = ip;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -20,9 +26,9 @@ public class IpInformation {
     }
 
 
-    @Autowired
-    public IpInformation() throws UnknownHostException {
-        var ipData = InetAddress.getLocalHost().getHostAddress();
-        this.ip = ipData;
-    }
+
+//    public IpInformation() throws UnknownHostException {
+//        var ipData = InetAddress.getLocalHost().getHostAddress();
+//        this.ip = ipData;
+//    }
 }

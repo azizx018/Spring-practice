@@ -1,10 +1,13 @@
 package net.yorksolutions.apiexercise;
 
+import com.fasterxml.jackson.annotation.JacksonInject;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 //package com.jsontest.server;
 
-import org.json.*;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONException;
 //copied from https://raw.githubusercontent.com/jsontest/jsontest/master/src/com/jsontest/server/JSONValidator.java
 /**
  * Validates JSON, from the org.json reference parser.
@@ -12,7 +15,7 @@ import org.json.*;
  * @author Vinny
  *
  */
-public class JsonInformation {
+public class JSONValidator {
 
     /**
      * Variables used when validation is a success.
@@ -21,12 +24,14 @@ public class JsonInformation {
     /**
      * Whether the validation was successful or not.
      */
+    @JsonProperty
     boolean validate;
 
     /**
      * If the validation was successful, the number of
      * first level keys within the JSON object.
      */
+    @JsonProperty
     int size;
 
     /**
@@ -34,6 +39,7 @@ public class JsonInformation {
      * the JSON object is empty or not (it is not empty
      * if it has at least 1 key:value pair).
      */
+    @JsonProperty
     boolean empty;
 
     /**
@@ -41,27 +47,33 @@ public class JsonInformation {
      * or as a JSONArray. Valid values are either "object"
      * or "array".
      */
+    @JsonProperty
     String object_or_array;
 
     /**
      * Error message from parser. If parsing and validation
      * failed, a reason why it failed. Taken from the parser.
      */
+    @JsonProperty
     String error;
 
     /**
      * If validation failed, a courtesy message letting the
      * user know where the parsing failure message came from.
      */
+    @JsonProperty
     String error_info;
 
     /**
      * How long the parsing took. Counted in nanoseconds.
      */
+
+    @JsonProperty
     long parse_time_nanoseconds;
 
 
-    public JsonInformation(String incoming_json) {
+
+    public JSONValidator(String incoming_json) {
         error_info = "This error came from the org.json reference parser.";
 
         incoming_json = incoming_json.trim();
