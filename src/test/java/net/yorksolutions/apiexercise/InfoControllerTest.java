@@ -11,6 +11,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpServletRequest;
 import java.net.UnknownHostException;
 import java.security.NoSuchAlgorithmException;
@@ -28,8 +29,11 @@ import static org.mockito.Mockito.when;
 
 
 public class InfoControllerTest {
-    @InjectMocks
-    InfoController controller;
+
+    //below either way is correct- if you do not need to inject MOCKS then do not use @Inject mocks to the top way
+   InfoController controller = new InfoController();
+//    @InjectMocks
+//    InfoController controller;
 
     @Mock
     HttpHeaders headers;

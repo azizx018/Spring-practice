@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
+import org.springframework.beans.factory.annotation.Autowired;
 //copied from https://raw.githubusercontent.com/jsontest/jsontest/master/src/com/jsontest/server/JSONValidator.java
 /**
  * Validates JSON, from the org.json reference parser.
@@ -15,6 +16,7 @@ import org.json.JSONException;
  * @author Vinny
  *
  */
+
 public class JSONValidator {
 
     /**
@@ -70,6 +72,7 @@ public class JSONValidator {
 
     @JsonProperty
     long parse_time_nanoseconds;
+
 
 
 
