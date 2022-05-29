@@ -49,6 +49,12 @@ public class InfoController {
         //Provide the generated token to the client for future use
         return token; //from now on use this UUID to let me know who you are
     }
+    @GetMapping("/logout")
+    public void logout(){
+        //tokenMap = new HashMap<>();
+        tokenMap.clear();
+    }
+
 
     @GetMapping("/register")
     public void register(@RequestParam String username, @RequestParam String password) {

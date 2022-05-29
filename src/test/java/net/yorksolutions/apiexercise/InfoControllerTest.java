@@ -66,8 +66,6 @@ public class InfoControllerTest {
 
     }
 
-
-
     @Test
     void itShouldMapUserIdWhenLoginIsSuccessful() {
         final var username = UUID.randomUUID().toString();
