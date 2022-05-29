@@ -110,6 +110,19 @@ public class InfoControllerTest {
 
     }
     @Test
+    void itShouldReturnAnEmptyHashMapWhenLogout() {
+        HashMap<UUID, Long> fullTokenMap = new HashMap<>();
+        final var token = UUID.randomUUID();
+        final Long id = (long) (Math.random() * 9999999);
+        fullTokenMap.put(token,id);
+
+        var controller = new InfoController(repository, fullTokenMap);
+        assertEquals(fullTokenMap, controller.tokenMap);
+        controller.logout();
+        assertEquals(fullTokenMap, controller.tokenMap);
+    }
+
+    @Test
     void itShouldTakeInAMapAndReturnTheSameMap() {
             HashMap<String, String> expected = new HashMap<>();
             expected.put("A", "a");
